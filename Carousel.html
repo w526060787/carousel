@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>carousel</title>
+    <script src="jquery-1.9.1.js"></script>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    h3,#box2,#box1{
+        margin: 50px auto;
+    }
+    h3{
+        text-align: center;
+    }
+    #box1{
+        width: 620px;
+        height: 360px;
+        overflow: hidden;
+    }
+    ul{
+        list-style: none;
+    }
+    img{
+        animation: mymove 2s ease-in;
+    }
+    @keyframes mymove /* Safari and Chrome */
+        {
+           from {opacity: 0;}
+           50%{opacity: 1;}
+           to {opacity: 0;}
+        }
+    
+   /*  #a1{
+        display: none;
+    }
+    #a2{
+        display: none;
+    }
+    #a3{
+        display: none;
+    }
+    #a4{
+        display: none;
+    } */
+    </style>
+</head>
+<body>
+    <h3>这是一个轮播图</h3>
+    <div id="box2"><div id="box1">
+        <ul id="pic">
+            <li id="a1"><img src="21.png" alt="木花"></li>
+            <li id="a2"><img src="22.png" alt="苗子"></li>
+            <li id="a3"><img src="23.png" alt="橘片"></li>
+            <li id="a4"><img src="24.png" alt="黄叶"></li>
+        </ul>
+    </div></div>
+    <script>
+    $(function(){
+        var pic=$("#pic li");
+        var number=pic.length;
+        var index=0;
+        console.log(number);
+        function move(){
+            index++;
+            console.log(index);
+            if(index==number){
+                index=0;
+            }
+            pic.eq(index).siblings().css("display","none");
+            pic.eq(index).css("display","block");
+        }
+        var timer=setInterval(move,2000);
+        pic.hover(function () {
+            clearInterval(timer);
+        }, function () {
+            timer=setInterval(move,2000);
+        })
+    })
+    </script>
+</body>
+</html>
